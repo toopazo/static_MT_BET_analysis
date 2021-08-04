@@ -21,12 +21,7 @@ function bet_main_single_inflow()
 
     str1 = 'bet_main_single_inflow';
     str2 = rotortype;
-
-    filename = [
-        'img/bet_main_single_inflow' ...
-        '_' rotortype  ...
-        '.mat' ...
-        ];
+    filename = ['img/' str1 '_' str2];
 
     % read_from_file = true;
     read_from_file = false;

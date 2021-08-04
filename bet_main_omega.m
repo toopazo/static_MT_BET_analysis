@@ -116,7 +116,10 @@ function bet_main_omega()
         table_rhoAvtip2(:)  , ...
         table_rhoAvtip3(:)    ...
     );
-    writetable(T, ['img/bet_main_omega_' rotortype '.txt']);
-    % writetable(struct2table(table_coax), 'img/table_txt')
+
+    str1 = 'bet_main_omega_';
+    str2 = rotortype;
+    filename = ['img/' str1 '_' str2 '.txt'];
+    writetable(T, filename);
 end
 

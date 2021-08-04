@@ -26,7 +26,10 @@ function lambda_c = bet_forces_coax_pos(blade_st, r, r_arr)
             % lambda_l = interp1(r_arr, ...
             %     blade_st.coax_lambda, r, 'linear');
             
-            lambda_infl = (1/r0)*(1/r0)*lambda_l;
+            % influence 1
+            % lambda_infl = (1/r0)*(1/r0)*lambda_l;
+            % influence 2
+            lambda_infl = blade_st.coaxu_l0;
             if isnan(lambda_infl)
                 error('lambda_u is NaN')
             end
@@ -46,7 +49,10 @@ function lambda_c = bet_forces_coax_pos(blade_st, r, r_arr)
             % lambda_u = interp1(r_arr, ...
             %     blade_st.coax_lambda, r, 'linear');
             
-            lambda_infl = (1/r0)*(1/r0)*lambda_u;
+            % influence 1
+            % lambda_infl = (1/r0)*(1/r0)*lambda_u;
+            % influence 2
+            lambda_infl = blade_st.coaxl_l0;
             if isnan(lambda_infl)
                 error('lambda_l is NaN')
             end

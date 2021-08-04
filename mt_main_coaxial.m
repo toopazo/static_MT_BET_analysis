@@ -134,7 +134,10 @@ function [...
     % axis square
     set(fig,'units','centimeters','position', [0, 0, 14, 10]); 
     % pause(60)
-    saveas(fig, ['img/mt_main_coaxial_' casestr '_1.jpg']);
+    str1 = 'mt_main_coaxial';
+    str2 = [casestr '_1'];
+    filename = ['img/' str1 '_' str2 '.jpg'];
+    saveas(fig, filename);  
 
     fig = figure(2);
     hold on;
@@ -160,7 +163,10 @@ function [...
     set(fig,'units','centimeters','position', [0, 0, 14, 10]); 
     % pause(60)
     % return
-    saveas(fig, ['img/mt_main_coaxial_' casestr '_2.jpg']);
+    str1 = 'mt_main_coaxial';
+    str2 = [casestr '_2'];
+    filename = ['img/' str1 '_' str2 '.jpg'];
+    saveas(fig, filename);  
     
     fig = figure(3);
     hold on;
@@ -179,7 +185,11 @@ function [...
     % axis square
     set(fig,'units','centimeters','position', [0, 0, 14, 10]); 
     pause(60*0)
-    saveas(fig, ['img/mt_main_coaxial_' casestr '_3.jpg']);  
+
+    str1 = 'mt_main_coaxial';
+    str2 = [casestr '_3'];
+    filename = ['img/' str1 '_' str2 '.jpg'];
+    saveas(fig, filename);  
 
     close all
 

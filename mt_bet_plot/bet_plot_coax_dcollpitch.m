@@ -1,4 +1,4 @@
-function bet_plot_coax_dcollpitch(rotortype, dcollpitch, db, str1)       
+function bet_plot_coax_dcollpitch(rotortype, dcollpitch, db, str1, str2)       
 
     dcollpitch_arr = db.dcollpitch_arr;
     collpitch_u_arr = db.collpitch_u_arr;
@@ -143,13 +143,8 @@ function bet_plot_coax_dcollpitch(rotortype, dcollpitch, db, str1)
         table_coax_power(:)      ...
     );
     
-    arg1 = ['_' rotortype '_' num2str(W) '_' ...
-        num2str(coaxu_r0) '_' num2str(coaxl_r0)];
-    % writetable(T, ['img/bet_plot_coax_dcollpitch' arg1 '.txt']);
-    str2 = [rotortype '_' num2str(W) ...
-        '_' num2str(coaxu_r0) '_' num2str(coaxl_r0)];
-    fname = ['img/' str1 '_' str2 '.txt'];
-    writetable(T, fname);
+    filename = ['img/' str1 '_' str2 '.txt'];
+    writetable(T, filename);
       
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     nfig = 1;
@@ -484,10 +479,6 @@ function bet_plot_coax_dcollpitch(rotortype, dcollpitch, db, str1)
     % xlim([0, 5]);
       
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % str1 = 'bet_plot_coax_dcollpitch';
-    % str2 = rotortype;
-    str2 = [rotortype '_' num2str(W) ...
-        '_' num2str(coaxu_r0) '_' num2str(coaxl_r0)];
     nfig_arr = [1, 2, 3, 4, 5, 6];
     savefig = false; 
     plot_save_nfig_arr(str1, str2, nfig_arr, savefig);    

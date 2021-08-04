@@ -149,7 +149,11 @@ function mt_main_FM_single_coax()
     arg = ['A ' num2str( round( area , 6 ) ) ' m2'];
     text(35, 0.90, arg)
     set(gca,'FontSize', 14)
-    saveas(fig, 'img/mt_main_FM_single_coax.jpg')
+
+    str1 = 'mt_main_FM_single_coax';
+    str2 = '';
+    filename = ['img/' str1 '_' str2 '.jpg'];
+    saveas(fig, filename)
     close all;
     
     function FM = get_FM_from_single(arr)

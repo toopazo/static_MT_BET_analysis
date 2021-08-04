@@ -1,23 +1,29 @@
 function [bet_u_st, bet_l_st] = bet_coax_forces(blade_u_st, blade_l_st)
-     
-    % % Non-iterative claculation of coax rotor
-    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        
-    % blade_u_st.coax_pos     = 'upper';
-    % % Lower on upper rotor inflow
-    % blade_u_st.coax_lambda  = 0 * blade_u_st.y_arr;                     
-    % bet_u_st                = bet_forces(blade_u_st);
-    % bet_u_st                = bet_forces_add_total(bet_u_st, false);
-    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % blade_l_st.coax_pos     = 'lower';
-    % % Upper on lower rotor inflow
-    % blade_l_st.coax_lambda  = 0 * (bet_u_st.total.lcr + bet_u_st.total.lir);
-    % bet_l_st                = bet_forces(blade_l_st);
-    % bet_l_st                = bet_forces_add_total(bet_l_st, false);
-    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%               
-    % return
+    
+    ones_arr    = ones(length(blade_l_st.y_arr)-1, 1);
+
+    % Non-iterative claculation of coax rotor
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        
+    blade_u_st.coax_pos     = 'upper';
+    % Lower on upper rotor inflow
+    % Lower on upper interference 
+    blade_u_st.coax_lambda  = bet_l_st.coaxu_l0 .* ones_arr;
+    bet_u_st                = bet_forces(blade_u_st);
+    bet_u_st                = bet_forces_add_total(bet_u_st, false);
+    lambda_u                = bet_u_st.total.lr;
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    blade_l_st.coax_pos     = 'lower';
+    % Upper on lower rotor inflow
+    % Upper on lower interference
+    blade_l_st.coax_lambda  = bet_l_st.coaxl_l0 .* ones_arr;
+    bet_l_st                = bet_forces(blade_l_st);
+    bet_l_st                = bet_forces_add_total(bet_l_st, false);
+    lambda_l                = bet_l_st.total.lr;
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+    return
 
     % Iterative claculation of coax rotor
-    lambda_l    = 0.0 * ones(length(blade_l_st.y_arr)-1, 1);
+    lambda_l    = 0.0 * ones_arr;
     T_u_prev    = 0;
     T_l_prev    = 0;
         
@@ -29,7 +35,7 @@ function [bet_u_st, bet_l_st] = bet_coax_forces(blade_u_st, blade_l_st)
         blade_u_st.coax_pos     = 'upper';
         % Lower on upper rotor inflow
         % Lower on upper interference 
-        blade_u_st.coax_lambda  = lambda_l * 1;
+        blade_u_st.coax_lambda  = lambda_l;
         bet_u_st                = bet_forces(blade_u_st);
         bet_u_st                = bet_forces_add_total(bet_u_st, false);
         lambda_u                = bet_u_st.total.lr;
@@ -37,7 +43,7 @@ function [bet_u_st, bet_l_st] = bet_coax_forces(blade_u_st, blade_l_st)
         blade_l_st.coax_pos     = 'lower';
         % Upper on lower rotor inflow
         % Upper on lower interference
-        blade_l_st.coax_lambda  = lambda_u * 1;
+        blade_l_st.coax_lambda  = lambda_u;
         bet_l_st                = bet_forces(blade_l_st);
         bet_l_st                = bet_forces_add_total(bet_l_st, false);
         lambda_l                = bet_l_st.total.lr;
