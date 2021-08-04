@@ -1,4 +1,4 @@
-# steadyState_inflowModels
+# Steady State analysis of single and coaxial rotors
 Software implementation of static (steady state) inflow model for a rotor in hover (BEMT) and forward flight (Glauert approximation). 
 
 Based on Leishman's book and Blade Element Theory
