@@ -6,11 +6,15 @@ img/
 *.pyc
 
 mt_bet_data/*
+mt_bet_data/*.mat
+
 mt_bet_data/kde_geometry.mat
 mt_bet_data/kde245_geometry.mat
 mt_bet_data/KDE245_geometry.xlsx
 mt_bet_data/kde305_geometry.mat
 mt_bet_data/KDE305_geometry.xlsx
+
+mt_bet_data/naca5407_geometry.mat
 
 mt_bet_data/NACA5407_Station*
 mt_bet_data/NACA5407_Station1.c81

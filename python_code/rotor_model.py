@@ -641,24 +641,11 @@ class KdeGeometry:
     kde245_geometry = scipy.io.loadmat('../mt_bet_data/kde245_geometry.mat')
     kde245_geometry = kde245_geometry['kde245_geometry']
 
-    # kde_geometry.CF305
-    kde_geometry = scipy.io.loadmat('../mt_bet_data/kde_geometry.mat')
-    kde_geometry = kde_geometry['kde_geometry']
-    # kde305_geometry = kde305_geometry['CF305']
-    # NACA5407_geometry = kde305_geometry['NACA5407']
-    kde_geometry = kde_geometry[0]
-    kde_geometry = kde_geometry[0]
-    kde305_geometry = kde_geometry[0]
-    kde305_geometry = kde305_geometry[0]
-    kde305_geometry = kde305_geometry[0]
-    naca5407_geometry = kde_geometry[1]
-    naca5407_geometry = naca5407_geometry[0]
-    naca5407_geometry = naca5407_geometry[0]
-    # print(kde305_geometry)
-    # print(len(kde305_geometry))
-    # # print(naca5407_geometry)
-    # # print(len(naca5407_geometry))
-    # exit(0)
+    kde305_geometry = scipy.io.loadmat('../mt_bet_data/kde305_geometry.mat')
+    kde305_geometry = kde305_geometry['kde305_geometry']
+
+    naca5407_geometry = scipy.io.loadmat('../mt_bet_data/naca5407_geometry.mat')
+    naca5407_geometry = naca5407_geometry['naca5407_geometry']
 
     @staticmethod
     def kde_rotor_defaults(rotortype):
@@ -800,13 +787,6 @@ class KdeGeometry:
         cm2m = UnitCnv.cm2m
         in2cm = UnitCnv.in2cm
 
-        # persistent kde_geometry
-        # if isempty(kde_geometry)
-        #     # self = load([bpath '/' 'kde_geometry'])
-        #     self = load('mt_bet_data/kde_geometry')
-        #     kde_geometry = self.kde_geometry
-        kde245_geometry = KdeGeometry.kde245_geometry
-
         y_arr = None
         chord_arr = None
         theta_arr = None
@@ -823,30 +803,30 @@ class KdeGeometry:
             pitchfactor = 8.9 / 9.7
 
             kde305_geometry = KdeGeometry.kde305_geometry
-            y_arr = kde305_geometry.CF305.y_arr * sizefactor
-            chord_arr = kde305_geometry.CF305.chord_arr * sizefactor
-            theta_arr = kde305_geometry.CF305.theta_arr * pitchfactor
+            y_arr = kde305_geometry.y_arr * sizefactor
+            chord_arr = kde305_geometry.chord_arr * sizefactor
+            theta_arr = kde305_geometry.theta_arr * pitchfactor
 
         elif rotortype == 'KDECF305DP':
             # 30.5 x 9.7
             kde305_geometry = KdeGeometry.kde305_geometry
-            y_arr = kde305_geometry.CF305.y_arr
-            chord_arr = kde305_geometry.CF305.chord_arr
-            theta_arr = kde305_geometry.CF305.theta_arr
+            y_arr = kde305_geometry.y_arr
+            chord_arr = kde305_geometry.chord_arr
+            theta_arr = kde305_geometry.theta_arr
 
         elif rotortype == 'NACA5407shape':
             R = 15.25 * in2cm * cm2m
             nsections = 11
             naca5407_geometry = KdeGeometry.naca5407_geometry
             y_arr = np.linspace(0, R, nsections)
-            chord_arr = naca5407_geometry.NACA5407.shape.x_arr
-            theta_arr = naca5407_geometry.NACA5407.shape.y_arr
+            chord_arr = naca5407_geometry.shape.x_arr
+            theta_arr = naca5407_geometry.shape.y_arr
 
         elif rotortype == 'NACA5407':
             naca5407_geometry = KdeGeometry.naca5407_geometry
-            y_arr = naca5407_geometry.NACA5407.y_arr
-            chord_arr = naca5407_geometry.NACA5407.chord_arr
-            theta_arr = naca5407_geometry.NACA5407.theta_arr
+            y_arr = naca5407_geometry.y_arr
+            chord_arr = naca5407_geometry.chord_arr
+            theta_arr = naca5407_geometry.theta_arr
 
         return [y_arr, chord_arr, theta_arr]
 
